@@ -22,12 +22,7 @@ class Checkout
       when :apple, :pear
         total += apple_and_pears_cost(item, count)
       when :banana, :pineapple
-        if item == :pineapple
-          total += (prices.fetch(item) / 2)
-          total += prices.fetch(item) * (count - 1)
-        else
-          total += (prices.fetch(item) / 2) * count
-        end
+        total += pineapple_cost(item, count)
       when :mango
         total += mango_cost(count)
       else
@@ -44,6 +39,19 @@ class Checkout
     return prices.fetch(item) * (count / 2) if (count % 2).zero?
 
     apply_no_discount(item, count)
+  end
+
+  def pineapple_cost(item, count)
+    total = 0
+
+    if item == :pineapple
+      total += (prices.fetch(item) / 2)
+      total += prices.fetch(item) * (count - 1)
+    else
+      total += (prices.fetch(item) / 2) * count
+    end
+
+    total
   end
 
   def mango_cost(count)
