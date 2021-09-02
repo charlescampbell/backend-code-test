@@ -3,7 +3,7 @@
 require 'pry'
 
 class Checkout
-  attr_reader :prices
+  attr_reader :prices, :discount_status
   private :prices
 
   def initialize(prices, discount_status = nil)
@@ -32,7 +32,7 @@ class Checkout
                end
     end
 
-    total
+    calculated_total(total)
   end
   # rubocop:enable Metrics/MethodLength
 
@@ -73,5 +73,16 @@ class Checkout
 
   def apply_no_discount(item, count)
     prices.fetch(item) * count
+  end
+
+  def discount
+    custom_discount = CustomDiscount.new
+    discount = custom_discount.fetch(discount_status)
+
+    discount / 100
+  end
+
+  def calculated_total(total)
+    total - (total * discount)
   end
 end
