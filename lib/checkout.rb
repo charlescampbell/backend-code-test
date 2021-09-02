@@ -14,6 +14,7 @@ class Checkout
     basket << item.to_sym
   end
 
+  # rubocop:disable Metrics/MethodLength
   def total
     total = 0
 
@@ -32,6 +33,7 @@ class Checkout
 
     total
   end
+  # rubocop:enable Metrics/MethodLength
 
   private
 
