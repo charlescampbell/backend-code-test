@@ -20,11 +20,7 @@ class Checkout
     itemized_basket.each do |item, count|
       case item
       when :apple, :pear
-        total += if (count % 2).zero?
-                   prices.fetch(item) * (count / 2)
-                 else
-                   apply_no_discount(item, count)
-                 end
+        total += apple_and_pears_cost(item, count)
       when :banana, :pineapple
         if item == :pineapple
           total += (prices.fetch(item) / 2)
@@ -33,11 +29,7 @@ class Checkout
           total += (prices.fetch(item) / 2) * count
         end
       when :mango
-        total += if (count % 4).zero?
-                   prices.fetch(item) * (count * 0.75)
-                 else
-                   apply_no_discount(item, count)
-                 end
+        total += mango_cost(count)
       else
         total += apply_no_discount(item, count)
       end
@@ -47,6 +39,18 @@ class Checkout
   end
 
   private
+
+  def apple_and_pears_cost(item, count)
+    return prices.fetch(item) * (count / 2) if (count % 2).zero?
+
+    apply_no_discount(item, count)
+  end
+
+  def mango_cost(count)
+    return prices.fetch(:mango) * (count * 0.75) if (count % 4).zero?
+
+    apply_no_discount(item, count)
+  end
 
   def basket
     @basket ||= []
