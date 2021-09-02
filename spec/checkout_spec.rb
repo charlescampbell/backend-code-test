@@ -2,6 +2,7 @@
 
 require 'spec_helper'
 require 'checkout'
+require 'custom_discount'
 
 RSpec.describe Checkout do
   describe '#total' do
@@ -104,6 +105,16 @@ RSpec.describe Checkout do
         8.times { checkout.scan(:mango) }
 
         expect(total).to eq(1200)
+      end
+    end
+
+    context 'when applying a student discount' do
+      let(:checkout) { Checkout.new(pricing_rules, :student) }
+
+      it 'returns the discounted 10% price for the basket with 4 mangos' do
+        4.times { checkout.scan(:mango) }
+
+        expect(total).to eq(540)
       end
     end
   end
