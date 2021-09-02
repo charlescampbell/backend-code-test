@@ -2,7 +2,7 @@
 
 class CustomDiscount
   def initialize
-    @discounts = {}
+    @discounts = { nhs: 50, student: 10 }
   end
 
   attr_reader :discounts

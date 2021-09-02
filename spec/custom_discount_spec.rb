@@ -24,15 +24,11 @@ RSpec.describe CustomDiscount do
 
   describe '#fetch' do
     context 'when fetching a discount that exists' do
-      before do
-        @discount = CustomDiscount.new
-        @discount.add(title: 'staff', percentage: 50)
-      end
-
       it 'returns the percentage discount by symbol passed in' do
-        discount_by = @discount.fetch(:staff)
+        discount = CustomDiscount.new
+        discount_by = discount.fetch(:student)
 
-        expect(discount_by).to eq(50)
+        expect(discount_by).to eq(10)
       end
     end
   end
