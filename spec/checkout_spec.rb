@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 require 'checkout'
 
@@ -6,7 +8,7 @@ RSpec.describe Checkout do
     subject(:total) { checkout.total }
 
     let(:checkout) { Checkout.new(pricing_rules) }
-    let(:pricing_rules) {
+    let(:pricing_rules) do
       {
         apple: 10,
         orange: 20,
@@ -15,7 +17,7 @@ RSpec.describe Checkout do
         pineapple: 100,
         mango: 200
       }
-    }
+    end
 
     context 'when no offers apply' do
       before do
