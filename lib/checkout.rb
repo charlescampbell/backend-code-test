@@ -31,6 +31,12 @@ class Checkout
         else
           total += (prices.fetch(item) / 2) * count
         end
+      elsif item == :mango
+        if (count % 4 == 0)
+          total += prices.fetch(item) * (count * 0.75)
+        else
+          total += apply_no_discount(item, count)
+        end
       else
         total += apply_no_discount(item, count)
       end
