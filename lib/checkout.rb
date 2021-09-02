@@ -6,8 +6,9 @@ class Checkout
   attr_reader :prices
   private :prices
 
-  def initialize(prices)
+  def initialize(prices, discount_status = nil)
     @prices = prices
+    @discount_status = discount_status
   end
 
   def scan(item)
