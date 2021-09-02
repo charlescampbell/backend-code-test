@@ -19,16 +19,16 @@ class Checkout
     total = 0
 
     itemized_basket.each do |item, count|
-      case item
-      when :apple, :pear
-        total += apple_and_pears_cost(item, count)
-      when :banana, :pineapple
-        total += pineapple_cost(item, count)
-      when :mango
-        total += mango_cost(count)
-      else
-        total += apply_no_discount(item, count)
-      end
+      total += case item
+               when :apple, :pear
+                 apple_and_pears_cost(item, count)
+               when :banana, :pineapple
+                 pineapple_cost(item, count)
+               when :mango
+                 mango_cost(count)
+               else
+                 apply_no_discount(item, count)
+               end
     end
 
     total
