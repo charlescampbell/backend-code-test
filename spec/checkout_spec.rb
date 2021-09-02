@@ -94,6 +94,14 @@ RSpec.describe Checkout do
       end
     end
 
+    context 'when only buying 2 mangos' do
+      it 'returns the price for two mangos' do
+        2.times { checkout.scan(:mango) }
+
+        expect(total).to eq(400)
+      end
+    end
+
     context 'when a buy 3 get 1 free offer applies to mangos' do
       it 'returns the discounted price for the basket with 4 mangos' do
         4.times { checkout.scan(:mango) }
