@@ -12,6 +12,13 @@ RSpec.describe CustomDiscount do
 
         expect(discount.discounts).to include({ staff: 50 })
       end
+
+      it 'makes sure that the string is all lowercase before converting to symbol' do
+        discount = CustomDiscount.new
+        discount.add(title: 'cApS', percentage: 20)
+
+        expect(discount.discounts).to include({ caps: 20 })
+      end
     end
   end
 end

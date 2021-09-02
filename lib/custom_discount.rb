@@ -8,6 +8,8 @@ class CustomDiscount
   attr_reader :discounts
 
   def add(title:, percentage:)
-    discounts[title.to_sym] = percentage
+    title = title.downcase.to_sym
+
+    discounts[title] = percentage
   end
 end
