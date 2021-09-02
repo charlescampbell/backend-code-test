@@ -12,4 +12,8 @@ class CustomDiscount
 
     discounts[title] = percentage
   end
+
+  def fetch(title)
+    discounts[title]
+  end
 end
