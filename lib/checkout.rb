@@ -52,9 +52,8 @@ class Checkout
     @basket ||= Array.new
   end
 
-  # TODO: Investigate looking at each_with_object
   def itemized_basket
-    basket.inject(Hash.new(0)) { |items, item| items[item] += 1; items }
+    basket.each_with_object(Hash.new(0)) { |item, items| items[item] += 1 }
   end
 
   def apply_no_discount(item, count)
