@@ -49,7 +49,7 @@ class Checkout
   private
 
   def basket
-    @basket ||= Array.new
+    @basket ||= []
   end
 
   def itemized_basket
