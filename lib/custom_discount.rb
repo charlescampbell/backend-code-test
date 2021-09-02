@@ -14,6 +14,7 @@ class CustomDiscount
   end
 
   def fetch(title)
-    discounts[title]
+    discount = discounts[title]
+    discount.to_f
   end
 end
